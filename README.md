@@ -23,13 +23,13 @@
 
 - GitHub: [@githubhandle](https://github.com/Swarzstein/)
 
-👤 IsmailChangezi
-
-- GitHub: [@githubhandle](https://github.com/IsmailChangezi)
-
 
 
 ## 🤝 Contributing
+
+👤 Ismail Changezi as co-author in the previous stage of this project.
+
+- GitHub: [@githubhandle](https://github.com/IsmailChangezi)
 
 Contributions, issues, and feature requests are welcome!
 

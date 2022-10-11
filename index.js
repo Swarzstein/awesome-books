@@ -43,11 +43,12 @@ const printBooks = () => {
   checkStorage();
   for (let i = 0; i < books.length; i += 1) {
     const bk = books[i];
+    const bookID =books[i].id;
+
     printed += `
-    <div class="book-section" id="book${bk.id}">
+    <div class="book-section" id="${bk.id}">
       <p>${bk.title} by ${bk.author}</p>
-      <button onclick="deleteBook(${bk.id})">Erase</button>
-     
+      <button class="erase-book">Erase</button>
     </div>
     `;
   };
@@ -69,17 +70,26 @@ const addBook = () => {
   console.log(storage);
 };
 
-const deleteBook = (id) => {
-  const newBooks = new Book(id, null, null);
+const deleteBook = (e) => {
+  let bookId = e.target.parentNode.id;
+  console.log(`the book with id = ${bookId} will be deleted`)
+  const newBooks = new Book(bookId, null, null);
   newBooks.Delete();
 
   printBooks();
+  
+  /*document.querySelectorAll('.erase-book').forEach(element => {
+    element.addEventListener('click', deleteBook);
+  });*/
 };
 
 
 
 // Add books
 document.querySelector('form').addEventListener('submit', addBook);
+document.querySelectorAll('.erase-book').forEach(element => {
+  element.addEventListener('click', deleteBook);
+});
 
 // display list section
 document.getElementById('call-list').addEventListener('click', () => {

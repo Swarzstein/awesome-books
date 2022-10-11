@@ -24,16 +24,18 @@ export default class Book {
 };
 
   Delete = () => {
-    checkStorage();
+    books = JSON.parse(localStorage.getItem('BOOkS'));
     books = books.filter((item) => {
       for (let i = 0; i < books.length; i += 1) {
         if (item.id === this.id) {
+          console.log(`book with id = ${this.id} identified`);
           return false;
         }
         return true;
       }
     });
     localStorage.setItem('BOOkS', JSON.stringify(books));
+    console.log('this is the books array:\n'+localStorage.getItem('BOOkS'));
   };
 }
 

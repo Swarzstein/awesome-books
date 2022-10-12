@@ -1,5 +1,5 @@
 import Book from "./modules/books.js";
-import { } from "./modules/books.js";
+import { checkStorage, printBooks } from "./modules/printer.js";
 
 const listBtn = document.getElementById('call-list');
 const addBooksBtn = document.getElementById('call-add-new');
@@ -12,20 +12,16 @@ const addBooksSection = document.querySelector('#add-books');
 const contactSection = document.querySelector('footer');
 
 const storage = JSON.parse(localStorage.getItem('BOOkS'));
-// MY OBJECTS //
+
 let books = [];
 
-const checkStorage = () => {
-  if (storage !== null) {
-    books = JSON.parse(localStorage.getItem('BOOkS'));
-  }
+if (storage !== null) {
+  books = JSON.parse(localStorage.getItem('BOOkS'));
 }
+
 checkStorage();
 
-
-const storeData = () => {
-  localStorage.setItem('BOOkS', JSON.stringify(books));
-};
+printBooks();
 
 const lastId = () => {
   let lastId = 0;
@@ -37,37 +33,8 @@ const lastId = () => {
 
 let n = lastId();
 
-const printBooks = () => {
-  let printed = '';
-  //  eslint-disable-next-line
-  checkStorage();
-  for (let i = 0; i < books.length; i += 1) {
-    const bk = books[i];
-    const bookID =books[i].id;
-
-    printed += `
-    <div class="book-section" id="${bk.id}">
-      <p>${bk.title} by ${bk.author}</p>
-      <button class="erase-book">Erase</button>
-    </div>
-    `;
-  };
-  listSection.innerHTML = printed;
-  document.querySelectorAll('.erase-book').forEach(element => {
-  element.addEventListener('click', (e) => {
-    let bookId = parseInt(e.target.parentNode.id);
-    console.log(`the book with id = ${bookId} will be deleted`);
-    const newBooks = new Book(bookId, null, null);
-    newBooks.Delete();
-  
-    printBooks();
-  });
-});
-}
-
-printBooks();
-
-const addBook = () => {
+// Add books
+document.querySelector('form').addEventListener('submit', () => {
   n += 1;
   console.log("this book's ID will be "+n)
   const newBook = new Book(n, inpTitle.value, inpAuthor.value);
@@ -78,24 +45,7 @@ const addBook = () => {
   printBooks();
   console.log('books printed');
   console.log(storage);
-};
-
-const deleteBook = (e) => {
-  let bookId = parseInt(e.target.parentNode.id);
-  console.log(`the book with id = ${bookId} will be deleted`);
-  const newBooks = new Book(bookId, null, null);
-  newBooks.Delete();
-
-  printBooks();
-  
-  /*document.querySelectorAll('.erase-book').forEach(element => {
-    element.addEventListener('click', deleteBook);
-  });*/
-};
-
-
-// Add books
-document.querySelector('form').addEventListener('submit', addBook);
+});
 
 
 // display list section

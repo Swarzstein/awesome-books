@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import Book from './books.js';
 
 const storage = JSON.parse(localStorage.getItem('BOOkS'));
@@ -30,7 +29,6 @@ export const printBooks = () => {
   document.querySelectorAll('.erase-book').forEach((element) => {
     element.addEventListener('click', (e) => {
       const bookId = parseInt(e.target.parentNode.id, 10);
-      // console.log(`the book with id = ${bookId} will be deleted`);
       const newBooks = new Book(bookId, null, null);
       newBooks.Delete();
       printBooks();

@@ -1,6 +1,17 @@
-// eslint-disable-next-line
-import Book from './modules/books.js';// eslint-disable-next-line
+import Book from './modules/books.js';
 import { checkStorage, printBooks } from './modules/printer.js';
+import { DateTime } from './modules/luxon.js';
+
+
+
+const now = DateTime.now();
+const dt = document.getElementById("date-time");
+let p=0;
+setInterval(() => {
+p++
+dt.innerHTML = DateTime.now().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
+}, 1000);
+
 
 const listBtn = document.getElementById('call-list');
 const addBooksBtn = document.getElementById('call-add-new');
@@ -37,15 +48,10 @@ let n = lastId();
 // Add books
 document.querySelector('form').addEventListener('submit', () => {
   n += 1;
-  // console.log("this book's ID will be "+n)
   const newBook = new Book(n, inpTitle.value, inpAuthor.value);
-  // console.log('new book created:\n'+JSON.stringify(newBook));
   newBook.Add();
-  // console.log('books added to local storege');
   checkStorage();
   printBooks();
-  // console.log('books printed');
-  // console.log(storage);
 });
 
 // display list section

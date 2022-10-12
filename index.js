@@ -2,16 +2,10 @@ import Book from './modules/books.js';
 import { checkStorage, printBooks } from './modules/printer.js';
 import { DateTime } from './modules/luxon.js';
 
-
-
-const now = DateTime.now();
-const dt = document.getElementById("date-time");
-let p=0;
+const dt = document.getElementById('date-time');
 setInterval(() => {
-p++
-dt.innerHTML = DateTime.now().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
+  dt.innerHTML = DateTime.now().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
 }, 1000);
-
 
 const listBtn = document.getElementById('call-list');
 const addBooksBtn = document.getElementById('call-add-new');

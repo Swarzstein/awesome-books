@@ -53,6 +53,16 @@ const printBooks = () => {
     `;
   };
   listSection.innerHTML = printed;
+  document.querySelectorAll('.erase-book').forEach(element => {
+  element.addEventListener('click', (e) => {
+    let bookId = parseInt(e.target.parentNode.id);
+    console.log(`the book with id = ${bookId} will be deleted`);
+    const newBooks = new Book(bookId, null, null);
+    newBooks.Delete();
+  
+    printBooks();
+  });
+});
 }
 
 printBooks();
@@ -71,8 +81,8 @@ const addBook = () => {
 };
 
 const deleteBook = (e) => {
-  let bookId = e.target.parentNode.id;
-  console.log(`the book with id = ${bookId} will be deleted`)
+  let bookId = parseInt(e.target.parentNode.id);
+  console.log(`the book with id = ${bookId} will be deleted`);
   const newBooks = new Book(bookId, null, null);
   newBooks.Delete();
 
@@ -84,12 +94,9 @@ const deleteBook = (e) => {
 };
 
 
-
 // Add books
 document.querySelector('form').addEventListener('submit', addBook);
-document.querySelectorAll('.erase-book').forEach(element => {
-  element.addEventListener('click', deleteBook);
-});
+
 
 // display list section
 document.getElementById('call-list').addEventListener('click', () => {

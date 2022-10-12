@@ -1,5 +1,6 @@
-import Book from "./modules/books.js";
-import { checkStorage, printBooks } from "./modules/printer.js";
+// eslint-disable-next-line
+import Book from './modules/books.js';// eslint-disable-next-line
+import { checkStorage, printBooks } from './modules/printer.js';
 
 const listBtn = document.getElementById('call-list');
 const addBooksBtn = document.getElementById('call-add-new');
@@ -36,44 +37,43 @@ let n = lastId();
 // Add books
 document.querySelector('form').addEventListener('submit', () => {
   n += 1;
-  console.log("this book's ID will be "+n)
+  // console.log("this book's ID will be "+n)
   const newBook = new Book(n, inpTitle.value, inpAuthor.value);
-  console.log('new book created:\n'+JSON.stringify(newBook));
+  // console.log('new book created:\n'+JSON.stringify(newBook));
   newBook.Add();
-  console.log('books added to local storege');
-  checkStorage()
+  // console.log('books added to local storege');
+  checkStorage();
   printBooks();
-  console.log('books printed');
-  console.log(storage);
+  // console.log('books printed');
+  // console.log(storage);
 });
-
 
 // display list section
 document.getElementById('call-list').addEventListener('click', () => {
-    listSection.classList.remove('hidden');
-    addBooksSection.classList.add('hidden');
-    contactSection.classList.add('hidden');
-    listBtn.classList.add('active');
-    addBooksBtn.classList.remove('active');
-    contactBtn.classList.remove('active');
-  });
+  listSection.classList.remove('hidden');
+  addBooksSection.classList.add('hidden');
+  contactSection.classList.add('hidden');
+  listBtn.classList.add('active');
+  addBooksBtn.classList.remove('active');
+  contactBtn.classList.remove('active');
+});
 
 // Display Add books Section
 document.getElementById('call-add-new').addEventListener('click', () => {
-    addBooksSection.classList.remove('hidden');
-    addBooksBtn.classList.add('active');
-    listSection.classList.add('hidden');
-    contactSection.classList.add('hidden');
-    listBtn.classList.remove('active');
-    contactBtn.classList.remove('active');
-  });
+  addBooksSection.classList.remove('hidden');
+  addBooksBtn.classList.add('active');
+  listSection.classList.add('hidden');
+  contactSection.classList.add('hidden');
+  listBtn.classList.remove('active');
+  contactBtn.classList.remove('active');
+});
 
 // display contact section
 document.getElementById('call-contact').addEventListener('click', () => {
-    contactSection.classList.remove('hidden');
-    contactBtn.classList.add('active');
-    listSection.classList.add('hidden');
-    addBooksSection.classList.add('hidden');
-    listBtn.classList.remove('active');
-    addBooksBtn.classList.remove('active');
-  });
+  contactSection.classList.remove('hidden');
+  contactBtn.classList.add('active');
+  listSection.classList.add('hidden');
+  addBooksSection.classList.add('hidden');
+  listBtn.classList.remove('active');
+  addBooksBtn.classList.remove('active');
+});

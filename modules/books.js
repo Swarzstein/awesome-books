@@ -2,11 +2,11 @@ const storage = JSON.parse(localStorage.getItem('BOOkS'));
 let books = [];
 
 const checkStorage = () => {
-    if (storage !== null) {
-      books = JSON.parse(localStorage.getItem('BOOkS'));
-    }
+  if (storage !== null) {
+    books = JSON.parse(localStorage.getItem('BOOkS'));
   }
-  checkStorage();
+};
+checkStorage();
 
 export default class Book {
   constructor(id, title, author) {
@@ -17,25 +17,24 @@ export default class Book {
 
   Add = () => {
     books.push({ id: this.id, title: this.title, author: this.author });
-    console.log('this is the books array:\n'+JSON.stringify(books));
+    // console.log('this is the books array:\n'+JSON.stringify(books));
     localStorage.setItem('BOOkS', JSON.stringify(books));
-    console.log('saved in local storage:');
+    // console.log('saved in local storage:');
     checkStorage();
-};
+  };
 
   Delete = () => {
-    books = JSON.parse(localStorage.getItem('BOOkS'));
+    books = JSON.parse(localStorage.getItem('BOOkS'));// eslint-disable-next-line
     books = books.filter((item) => {
       for (let i = 0; i < books.length; i += 1) {
         if (item.id === this.id) {
-          console.log(`book with id = ${this.id} identified`);
+          // console.log(`book with id = ${this.id} identified`);
           return false;
         }
         return true;
       }
     });
     localStorage.setItem('BOOkS', JSON.stringify(books));
-    console.log('this is the books array:\n'+localStorage.getItem('BOOkS'));
+    // console.log('this is the books array:\n' + localStorage.getItem('BOOkS'));
   };
 }
-
